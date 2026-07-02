@@ -12,7 +12,7 @@ team_members:
     email: "rimeethakkar1902@gmail.com"
 
 
-github_repo: "https://github.com/Rimee1902/<FILL_IN repo name>"
+github_repo: "https://github.com/Rimee1902/India-Runs"
 
 reproduce_command: "python src/rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 
