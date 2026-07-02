@@ -1,0 +1,64 @@
+# Redrob Hackathon — Submission Metadata
+
+team_name: "Synapse1119"
+
+primary_contact:
+  name: "Palak Jain"
+  email: "palakjain1126@gmail.com"
+  phone: "<9898492599"
+
+team_members:
+  - name: "Rimee Thakkar"
+    email: "rimeethakkar1902@gmail.com"
+
+
+github_repo: "https://github.com/Rimee1902/<FILL_IN repo name>"
+
+reproduce_command: "python src/rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+compute:
+  platform: "Windows 11 laptop "
+  cpu_cores: 4          # adjust to your machine
+  ram_gb: 16            # adjust to your machine
+  python_version: "3.11"   # run `python --version` and update
+  os: "windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Claude"
+
+ai_usage_summary: |
+  Used Claude (Anthropic) for architecture discussion, writing the
+  feature-extraction and scoring pipeline, and code review. All scoring
+  logic and weights are deterministic rule-based Python derived directly
+  from the job description text — no candidate data was sent to any
+  hosted LLM API, and no LLM calls occur during the ranking step itself.
+
+methodology_summary: |
+  Fully local, rule-based hybrid ranker — no embeddings model, no LLM
+  calls at ranking time (satisfies the no-GPU/no-network constraint
+  trivially). Job description requirements are hand-encoded from the JD
+  text into structured config (must-have skill groups, disqualifier
+  keyword lists, location/experience preferences). Each candidate is
+  scored via: (1) trust-weighted skill match (skills only count if
+  evidenced by tenure/endorsements, discounting randomized keyword-stuffed
+  skill lists used as decoys in this dataset), (2) career-history keyword
+  evidence of having shipped ranking/retrieval/recommendation systems,
+  (3) title relevance, (4) experience-band fit, (5) location fit,
+  (6) multiplicative penalties for each JD-stated disqualifier
+  (research-only, consulting-only career, CV/speech-only, framework-only
+  recent AI experience, non-coding senior titles, title-chasing), and
+  (7) a behavioral availability multiplier (recency, responsiveness,
+  notice period). Honeypots (inconsistent skill-tenure or
+  experience/history patterns) are scored near-zero. Runtime: ~26s for
+  100K candidates, ~16MB peak RAM, CPU-only, zero network calls.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

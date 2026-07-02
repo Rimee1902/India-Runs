@@ -1,0 +1,13 @@
+# The ranking pipeline (src/rank.py) uses only the Python standard library
+# (json, csv, heapq, argparse, datetime, resource) - no external ML
+# libraries are needed at ranking time, since scoring is deterministic
+# rule-based logic over fields already present in each candidate record.
+#
+# This is intentional: it removes any risk of dependency/version drift
+# breaking Stage 3 reproduction, and trivially satisfies the "CPU only,
+# no GPU, no network" constraint since nothing is ever downloaded or
+# loaded as a model.
+#
+# streamlit is only needed for the optional sandbox demo (app.py), not
+# for the ranking pipeline itself.
+streamlit>=1.30

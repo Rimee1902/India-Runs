@@ -1,0 +1,19 @@
+# Full candidate pool is too large for git (~487MB) and is provided by
+# the hackathon organizers - not something we should commit.
+candidates.jsonl
+candidates.jsonl.gz
+data/candidates.jsonl
+data/candidates.jsonl.gz
+
+# Standard Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local output (the actual submission CSV should be uploaded via the
+# portal separately, not required to live in git - but harmless to keep
+# if you want a record; uncomment below to ignore it)
+# output/submission.csv
+
+.DS_Store
